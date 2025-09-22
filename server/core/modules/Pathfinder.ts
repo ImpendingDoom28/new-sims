@@ -1,12 +1,12 @@
-import Pathfinding from "pathfinding";
+import { default as Pathfinding } from "pathfinding";
 
 import { map } from "../constants/map.js";
 
 class Pathfinder {
-  #grid;
-  #finder;
+  readonly #grid;
+  readonly #finder;
 
-  constructor(gridWidth, gridHeight) {
+  constructor(gridWidth: number, gridHeight: number) {
     this.#grid = new Pathfinding.Grid(gridWidth, gridHeight);
 
     this.#finder = new Pathfinding.AStarFinder({
@@ -15,7 +15,7 @@ class Pathfinder {
     });
   }
 
-  findPath = (start, end) => {
+  findPath = (start: number[], end: number[]) => {
     const gridClone = this.#grid.clone();
     const path = this.#finder.findPath(
       start[0],
@@ -27,7 +27,7 @@ class Pathfinder {
     return path;
   };
 
-  updateGrid = () => {
+  updateGrid = (): void => {
     // Reseting grid walkable
     for (let x = 0; x < map.size[0] * map.gridDivision; x++) {
       for (let y = 0; y < map.size[1] * map.gridDivision; y++) {
@@ -40,20 +40,16 @@ class Pathfinder {
         return;
       }
 
-      const width =
-        item.rotation === 1 || item.rotation === 3
-          ? item.size[1]
-          : item.size[0];
-      const height =
-        item.rotation === 1 || item.rotation === 3
-          ? item.size[0]
-          : item.size[1];
+      const { rotation, size, gridPosition } = item;
+
+      const width = rotation === 1 || rotation === 3 ? size[1] : size[0];
+      const height = rotation === 1 || rotation === 3 ? size[0] : size[1];
 
       for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
           this.#grid.setWalkableAt(
-            item.gridPosition[0] + x,
-            item.gridPosition[1] + y,
+            gridPosition[0] + x,
+            gridPosition[1] + y,
             false
           );
         }

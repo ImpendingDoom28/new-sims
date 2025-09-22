@@ -18,6 +18,7 @@ export const Woman: React.FC<WomanProps> = ({
   path,
   position,
   isBuilding,
+  isShopping,
   ...props
 }) => {
   const { group, nodes, materials, initialPosition, name } =
@@ -32,6 +33,7 @@ export const Woman: React.FC<WomanProps> = ({
       gridPath: path,
       position,
       isBuilding,
+      isShopping,
     });
 
   return (

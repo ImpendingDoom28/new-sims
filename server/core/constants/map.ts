@@ -1,13 +1,8 @@
 import { generateRandomId } from "../utils/generateRandomId.js";
+import { Item } from "../types/Item.js";
+import { MapSettings } from "../types/MapSettings.js";
 
-/**
- * @typedef Item
- * @property {string} name
- * @property {number[]} size
- * @property {boolean | undefined} wall - If can be placed on wall
- * @property {boolean | undefined} walkable - If can be walked over
- */
-export const registeredItems = {
+export const registeredItems: Record<string, Item> = {
   chair: {
     name: "chair",
     size: [1, 1],
@@ -18,7 +13,7 @@ export const registeredItems = {
   },
 };
 
-export const map = {
+export const map: MapSettings = {
   size: [10, 10],
   gridDivision: 2,
   placedItems: [
@@ -35,7 +30,7 @@ export const map = {
     },
     {
       ...registeredItems.table,
-      id: generateRandomId(registeredItems.chair.table),
+      id: generateRandomId(registeredItems.table.name),
       gridPosition: [10, 10],
     },
   ],

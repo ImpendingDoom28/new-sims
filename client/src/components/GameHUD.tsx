@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { Html, Hud, PerspectiveCamera } from "@react-three/drei";
+import classNames from "classnames";
 
 import {
   isBuildModeSelector,
@@ -12,7 +13,6 @@ import {
 } from "../core/stores/buildModeStore";
 import { IconButton } from "./ui/IconButton";
 import { socket } from "../core/modules/socket";
-import classNames from "classnames";
 
 export const GameHUD: React.FC = () => {
   const isShopOpened = useBuildModeStore(isShopOpenedSelector);

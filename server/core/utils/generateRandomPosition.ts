@@ -1,5 +1,5 @@
-import { map } from "../constants/map.js";
-import { PathFinder } from "../modules/Pathfinder.js";
+import { map } from "../constants/map.ts";
+import { PathFinder } from "../modules/Pathfinder.ts";
 
 const RETRY_AMOUNT = 100;
 

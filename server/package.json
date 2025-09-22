@@ -1,13 +1,22 @@
 {
   "dependencies": {
-    "pathfinding": "^0.4.18",
+    "pathfinding": "0.4.18",
     "socket.io": "4.7.2"
   },
   "devDependencies": {
-    "nodemon": "3.0.1"
+    "@types/node": "24.5.2",
+    "@types/pathfinding": "0.1.0",
+    "nodemon": "3.1.10",
+    "ts-node": "10.9.2",
+    "tslib": "2.8.1",
+    "tsx": "4.19.0",
+    "typescript": "5.6.3"
   },
+  "main": "index.ts",
+  "packageManager": "yarn@3.6.4",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon --exec \"node --loader ts-node/esm\" index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "type": "module"
 }

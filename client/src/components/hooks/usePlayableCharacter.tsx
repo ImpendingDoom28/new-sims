@@ -169,6 +169,7 @@ export const usePlayableCharacter = ({
         animationAction.fadeIn(ANIMATION_SPEED).play();
         // Play the animation, wait for half its duration, then pause
         const duration = animationAction.getClip().duration;
+        console.log(ANIMATION_SPEED, duration);
         setTimeout(() => {
           animationAction.paused = true;
         }, duration * 500); // Pause at halfway point (duration is in seconds, setTimeout in ms)
@@ -178,7 +179,11 @@ export const usePlayableCharacter = ({
     }
 
     return () => {
-      if (isPausible) animationAction?.reset();
+      if (isPausible) {
+        setTimeout(() => {
+          animationAction?.reset();
+        }, (animationAction?.getClip().duration ?? 0) * 1000);
+      }
       animationAction?.fadeOut(ANIMATION_SPEED);
     };
   }, [
